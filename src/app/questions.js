@@ -10,21 +10,17 @@ export default [
     }
   },
   {
-    name: 'shallRequireParentProps',
+    name: 'generateErrorComponent',
     type: 'confirm',
-    message: 'Success component requires parent props support? :',
-    default: true
+    message: 'Shall generate error component scaffolding? :',
+    default: true,
+    store: true
   },
   {
-    name: 'isSeperateScreen',
+    name: 'generateLoadingComponent',
     type: 'confirm',
-    message: 'Shall generate a wrapper component? :',
-    default: true
-  },
-  {
-    name: 'shallOverwrite',
-    type: 'confirm',
-    message: 'Shall we overwrite if the directory already exists? :',
-    default: false
+    message: 'Shall generate loading component scaffolding? :',
+    default: true,
+    store: true
   }
 ];

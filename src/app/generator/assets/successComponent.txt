@@ -1,0 +1,17 @@
+import React from 'react';
+
+export default class SuccessComponent extends React.Component
+{
+  constructor(props)
+  {
+    super(props);
+  }
+
+  render()
+  {
+    // this.props.result could be used to retrieve promise results
+    return (
+      null
+    );
+  }
+}

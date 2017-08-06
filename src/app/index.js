@@ -3,6 +3,7 @@ import fs from 'fs';
 import path from 'path';
 import _ from 'lodash';
 import questions from './questions.js';
+import localGenerator from './generator';
 
 export default class ReactPromisedComponentGenerator extends Generator
 {
@@ -17,13 +18,7 @@ export default class ReactPromisedComponentGenerator extends Generator
       desc: 'A generation path for promised component'
     });
 
-    this.log('Generation path : ', this.options.gen_path);
-
-    if (!fs.accessSync(this.options.gen_path, fs.constants.R_OK | fs.constants.W_OK))
-    {
-      this.log('Supplied generation path must be visible to the generator and must have a read and write access');
-      throw new Error('Invalid directory path');
-    }
+    fs.accessSync(this.options.gen_path, fs.constants.R_OK | fs.constants.W_OK);
   }
 
   prompting()
@@ -31,10 +26,15 @@ export default class ReactPromisedComponentGenerator extends Generator
     return this.prompt(questions)
     .then((answers) =>
     {
-      this.log('Component Name', answers.componentName);
-      this.log('Require parent props', answers.shallRequireParentProps);
-      this.log('Generate wrapper', answers.isSeperateScreen);
-      this.log('Overwrite path', answers.shallOverwrite);
+      var gen = new localGenerator(this.options.gen_path, answers);
+      var logs = gen.startGeneration();
+      if (logs.length > 0)
+      {
+        for (var i = 0; i < logs.length; i++)
+        {
+          this.log(logs[i]);
+        }
+      }
     });
   }
 };

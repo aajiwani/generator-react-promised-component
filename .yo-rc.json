@@ -5,5 +5,11 @@
       "authorEmail": "amirali.jiwani89@gmail.com",
       "authorUrl": "https://github.com/aajiwani"
     }
+  },
+  "generator-react-promised-component": {
+    "promptValues": {
+      "generateErrorComponent": false,
+      "generateLoadingComponent": false
+    }
   }
 }
